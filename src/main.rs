@@ -1,37 +1,22 @@
-use sha2::{Sha256, Digest};
-use serde::{Serialize, Deserialize};
-use chrono::Utc;
+use sha2::Digest;
 
-#[derive(Debug, Serialize, Deserialize)]
-struct Block {
-    index: u32,
-    timestamp: i64,
-    prev_hash: String,
-    data: String,
-    hash: String,
-}
-
-impl Block {
-    fn new(index: u32, prev_hash: String, data: String) -> Self {
-        let timestamp = Utc::now().timestamp();
-        let mut block = Block {
-            index,
-            timestamp,
-            prev_hash,
-            data,
-            hash: String::new(),
-        };
-        block.hash = block.calculate_hash();
-        block
-    }
-
-    fn calculate_hash(&self) -> String {
-        let mut hasher = Sha256::new();
-        hasher.update(format!("{}{}{}", self.index, self.timestamp, self.data));
-        format!("{:x}", hasher.finalize())
-    }
-}
 
 fn main() {
-    println!("🚀 Blockchain Initialized!");
+let mut hasher=sha2::Sha256::new();
+let data=b"this";
+
+let  name:&str = "this a ";
+    
+let byte_name=name.as_bytes();
+
+hasher.update(data);
+let result=hasher.finalize();
+println!("this is what i've been waiting....");
+
+// println!("hash::  {:?}", result);
+println!("hash:  {:x}", result);
+println!("data:  {:?}", data);
+println!("byte name :  {:?}", byte_name);
+
+
 }
