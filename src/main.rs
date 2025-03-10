@@ -1,22 +1,19 @@
 use sha2::Digest;
 
+ fn hash(input:&str)->String{
+    let mut hasher=sha2::Sha256::new();
+    hasher.update(input.as_bytes());
+    let result = hasher.finalize();
+    format!("{:x}", result)
 
+ }
 fn main() {
-let mut hasher=sha2::Sha256::new();
-let data=b"this";
 
 let  name:&str = "this a ";
     
-let byte_name=name.as_bytes();
+println!("Input: {}", name);
+let hash_name =hash(name);
 
-hasher.update(data);
-let result=hasher.finalize();
-println!("this is what i've been waiting....");
-
-// println!("hash::  {:?}", result);
-println!("hash:  {:x}", result);
-println!("data:  {:?}", data);
-println!("byte name :  {:?}", byte_name);
-
+println!("Input: {}", hash_name);
 
 }
