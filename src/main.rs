@@ -17,7 +17,8 @@ use hex;
     let mut hasher = Keccak::v256();
     hasher.update(data);
     hasher.finalize(&mut output);
-    hex::encode(output);
+    
+    hex::encode(output)
     // output
 }
 
